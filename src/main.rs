@@ -1,6 +1,7 @@
 mod std_globals;
 mod std_io;
 mod std_fs;
+mod std_lib;
 
 use mlua::prelude::*;
 use std::{fs, env};
@@ -12,15 +13,11 @@ fn main() -> LuaResult<()> {
     // Read the file the user passes as an arg
     let source = fs::read(&args[1])?;
 
-    // Create a new Lua state
+    // Create a new Luau state
     let luau = Lua::new();
 
-    // Inject globals
-    std_globals::inject(&luau)?;
-
-    // Inject std libs for testing
-    std_io::inject(&luau)?;
-    std_fs::inject(&luau)?;
+    // Inject the duc standard library into the Luau state
+    std_lib::inject(&luau)?;
 
     // Load and execute the Luau file
     luau.load(source)
