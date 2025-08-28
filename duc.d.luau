@@ -1,6 +1,3 @@
---!nolint
---!nocheck
-
 -- // Globals
 declare function warn(s: string): ()
 declare function print(s: string): ()
@@ -9,7 +6,8 @@ declare function print(s: string): ()
 declare fs: {
     read: (kind: "f" | "d", path: string) -> string | { string },
     writeFile: (path: string, contents: string) -> (),
-    writeDir: (path: string) -> ()
+    writeDir: (path: string) -> (),
+    exists: (path: string) -> boolean
 }
 
 declare io: {

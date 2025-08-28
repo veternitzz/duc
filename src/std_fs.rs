@@ -8,6 +8,7 @@ pub fn inject(luau: &Lua) -> LuaResult<()> {
     table.set("read", luau.create_function(fs_read)?)?;
     table.set("writeFile", luau.create_function(fs_write_file)?)?;
     table.set("writeDir", luau.create_function(fs_write_dir)?)?;
+    table.set("exists", luau.create_function(fs_exists)?)?;
     table.set_readonly(true);
 
     globals.set("fs", table)?;
@@ -49,4 +50,8 @@ fn fs_write_file(_: &Lua, (path, contents): (String, String)) -> LuaResult<()> {
 fn fs_write_dir(_: &Lua, path: String) -> LuaResult<()> {
     fs::create_dir(path)?;
     Ok(())
+}
+
+fn fs_exists(_: &Lua, path: String) -> LuaResult<bool> {
+    fs::exists(path).into_lua_err()
 }
