@@ -2,16 +2,17 @@ mod std_globals;
 mod std_io;
 mod std_fs;
 mod std_lib;
+mod cli;
 
 use mlua::prelude::*;
-use std::{fs, env};
 
 fn main() -> LuaResult<()> {
     // Do command line arguments
-    let args: Vec<String> = env::args().collect();
+    let arg_return = cli::process()?;
 
-    // Read the file the user passes as an arg
-    let source = fs::read(&args[1])?;
+    if arg_return == "none" {
+        return Ok(())
+    }
 
     // Create a new Luau state
     let luau = Lua::new();
@@ -20,7 +21,7 @@ fn main() -> LuaResult<()> {
     std_lib::inject(&luau)?;
 
     // Load and execute the Luau file
-    luau.load(source)
+    luau.load(arg_return.as_bytes())
         .exec()?;
 
     Ok(())
