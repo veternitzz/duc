@@ -15,9 +15,6 @@ fn warn(_luau: &Lua, s: String) -> LuaResult<()> {
 }
 
 fn print(_: &Lua, s: String) -> LuaResult<()> {
-    let mut stdout = io::stdout();
-    let bytes = s.as_bytes();
-
-    stdout.write(bytes)?;
+    println!("{}", s);
     Ok(())
 }
