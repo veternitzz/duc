@@ -16,7 +16,7 @@ pub fn process() -> LuaResult<String> {
 
 fn run(args: &Vec<String>) -> LuaResult<String> {
     if args.len() < 3 {
-        let contents = fs::read_to_string("./srcd/init.luau")?;
+        let contents = fs::read_to_string("./src/init.luau")?;
 
         return Ok(contents)
     }
@@ -33,8 +33,8 @@ fn run(args: &Vec<String>) -> LuaResult<String> {
 fn init() -> LuaResult<String> {
     let source = "print('Hello, World!')";
 
-    fs::create_dir("./srcd")?;
-    fs::write("./srcd/init.luau", source)?;
+    fs::create_dir("./src")?;
+    fs::write("./src/init.luau", source)?;
 
     Ok(String::from("none"))
 }
