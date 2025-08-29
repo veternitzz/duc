@@ -1,5 +1,4 @@
 use mlua::prelude::*;
-use std::{io::{self, Write}};
 
 pub fn inject(luau: &Lua) -> LuaResult<()> {
     let globals = luau.globals();
