@@ -2,14 +2,11 @@ mod std_lib;
 mod cli;
 mod runtime;
 mod util;
+mod run;
 
 use mlua::prelude::*;
 
 fn main() -> LuaResult<()> {
-    // Create a new duc runtime state
-    let duc = runtime::Runtime::new();
-    duc.load_std()?;
-
     // Do command line arguments
     let arg_return = cli::process()?;
 
@@ -17,9 +14,8 @@ fn main() -> LuaResult<()> {
         return Ok(())
     }
 
-    // Execute the loaded file contents
-    // if the user chose to run a file
-    duc.load_string(arg_return)?;
+    // Use the ``run`` utility module to execute the project
+    run::run(arg_return)?;
 
     Ok(())
 }
