@@ -1,9 +1,14 @@
 mod std_lib;
 mod cli;
+mod runtime;
 
 use mlua::prelude::*;
 
 fn main() -> LuaResult<()> {
+    // Create a new duc runtime state
+    let duc = runtime::Runtime::new();
+    duc.load_std()?;
+
     // Do command line arguments
     let arg_return = cli::process()?;
 
@@ -11,15 +16,9 @@ fn main() -> LuaResult<()> {
         return Ok(())
     }
 
-    // Create a new Luau state
-    let luau = Lua::new();
-
-    // Inject the duc standard library into the Luau state
-    std_lib::inject(&luau)?;
-
-    // Load and execute the Luau file
-    luau.load(arg_return.as_bytes())
-        .exec()?;
+    // Execute the loaded file contents
+    // if the user chose to run a file
+    duc.load_string(arg_return)?;
 
     Ok(())
 }
