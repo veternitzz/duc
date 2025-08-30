@@ -1,6 +1,3 @@
-mod std_globals;
-mod std_io;
-mod std_fs;
 mod std_lib;
 mod cli;
 
