@@ -1,6 +1,7 @@
 mod std_lib;
 mod cli;
 mod runtime;
+mod util;
 
 use mlua::prelude::*;
 
