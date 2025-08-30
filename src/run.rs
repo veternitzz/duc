@@ -10,7 +10,7 @@ pub fn run(chunk: String) -> LuaResult<()> {
 
     if module_type == ModuleKind::COMPLEX {
         pre_exec_duc.load_file(String::from("./src/run/init.luau"))?;
-    } else if module_type == ModuleKind::SIMPLE {;
+    } else if module_type == ModuleKind::SIMPLE {
         pre_exec_duc.load_file(String::from("./src/run.luau"))?;
     }
 
