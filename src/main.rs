@@ -2,7 +2,9 @@ mod std_lib;
 mod cli;
 mod runtime;
 mod util;
-mod run;
+mod luau_modules;
+
+use luau_modules::run;
 
 use mlua::prelude::*;
 
