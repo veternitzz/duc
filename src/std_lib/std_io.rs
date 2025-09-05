@@ -5,7 +5,7 @@ pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     let table = luau.create_table().unwrap();
     table.set("write", luau.create_function(io_write)?)?;
     table.set("ewrite", luau.create_function(io_ewrite)?)?;
-    table.set("readline", luau.create_function(io_readline)?)?;
+    table.set("readLine", luau.create_function(io_readline)?)?;
     table.set_readonly(true);
 
     Ok(table)
