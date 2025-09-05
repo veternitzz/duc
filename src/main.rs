@@ -4,8 +4,6 @@ mod runtime;
 mod util;
 mod luau_modules;
 
-use luau_modules::run;
-
 use mlua::prelude::*;
 
 fn main() -> LuaResult<()> {
@@ -16,8 +14,9 @@ fn main() -> LuaResult<()> {
         return Ok(())
     }
 
-    // Use the ``run`` utility module to execute the project
-    run::run(arg_return)?;
+    let duc = runtime::Runtime::new();
+    duc.open_globals()?;
+    duc.load_string(arg_return)?;
 
     Ok(())
 }
