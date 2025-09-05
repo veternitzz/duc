@@ -1,11 +1,11 @@
 use std::{fs};
 
-use crate::std_lib::*;
+use crate::std_lib::{self, *};
 
 use mlua::prelude::*;
 
 pub fn require(luau: &Lua, path: String) -> LuaResult<LuaValue> {
-    if path.starts_with("@std/") {
+    if path.starts_with("@std") {
         return Ok(get_std_library(luau, path).unwrap().into_lua(&luau)?)
 
     } else {
@@ -16,6 +16,7 @@ pub fn require(luau: &Lua, path: String) -> LuaResult<LuaValue> {
 
 fn get_std_library(luau: &Lua, path: String) -> LuaResult<LuaTable> {
     match path.as_str() {
+        "@std" => Ok(std_lib::create(&luau)?),
         "@std/fs" => Ok(std_fs::create(&luau)?),
         "@std/io" => Ok(std_io::create(&luau)?),
         &_ => Err(LuaError::RuntimeError(String::from("invalid standard library")))
