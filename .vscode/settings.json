@@ -1,4 +1,3 @@
 {
     "luau-lsp.platform.type": "standard",
-    "luau-lsp.types.definitionFiles": ["./duc.d.luau"]
 }
