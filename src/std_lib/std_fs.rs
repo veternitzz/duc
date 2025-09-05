@@ -1,9 +1,7 @@
 use std::fs;
 use mlua::prelude::*;
 
-pub fn inject(luau: &Lua) -> LuaResult<()> {
-    let globals = luau.globals();
-
+pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     let table = luau.create_table()?;
     table.set("read", luau.create_function(fs_read)?)?;
     table.set("writeFile", luau.create_function(fs_write_file)?)?;
@@ -11,8 +9,7 @@ pub fn inject(luau: &Lua) -> LuaResult<()> {
     table.set("exists", luau.create_function(fs_exists)?)?;
     table.set_readonly(true);
 
-    globals.set("fs", table)?;
-    Ok(())
+    Ok(table)
 }
 
 fn fs_read(luau: &Lua, (kind, path): (String, String)) -> LuaResult<LuaEither<LuaString, LuaTable>> {

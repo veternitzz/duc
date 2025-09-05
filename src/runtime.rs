@@ -1,6 +1,6 @@
 #![allow(dead_code)]
 
-use super::std_lib;
+use crate::std_lib::std_globals;
 
 use std::fs;
 
@@ -13,16 +13,11 @@ pub struct Runtime {
 impl Runtime {
     pub fn new() -> Runtime {
         let luau = Lua::new_with(LuaStdLib::ALL, LuaOptions::new()).unwrap();
+        std_globals::inject(&luau).unwrap();
 
         Runtime {
             luau_state: luau
         }
-    }
-
-    pub fn load_std(&self) -> LuaResult<()> {
-        std_lib::inject(&self.luau_state)?;
-
-        Ok(())
     }
 
     pub fn load_string(&self, chunk: String) -> LuaResult<()> {
