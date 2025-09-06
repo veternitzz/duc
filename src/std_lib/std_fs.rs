@@ -7,6 +7,7 @@ pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     table.set("writeFile", luau.create_function(fs_write_file)?)?;
     table.set("writeDir", luau.create_function(fs_write_dir)?)?;
     table.set("exists", luau.create_function(fs_exists)?)?;
+    table.set("writeDirAll", luau.create_function(fs_write_dir_all)?)?;
     table.set_readonly(true);
 
     Ok(table)
@@ -51,4 +52,9 @@ fn fs_write_dir(_: &Lua, path: String) -> LuaResult<()> {
 
 fn fs_exists(_: &Lua, path: String) -> LuaResult<bool> {
     fs::exists(path).into_lua_err()
+}
+
+fn fs_write_dir_all(_: &Lua, path: String) -> LuaResult<()> {
+    fs::create_dir_all(path)?;
+    Ok(())
 }
