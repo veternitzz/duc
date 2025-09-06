@@ -1,10 +1,15 @@
 export type sys = {
-    hostname: () -> string
+    hostname: () -> string,
+    name: () -> string
 }
 
 local sys = {}
 
 function sys.hostname(): string
+    return ""
+end
+
+function sys.name(): string
     return ""
 end
 
