@@ -2,7 +2,8 @@ export type Fs = {
     read: (kind: "d" | "f", path: string) -> (string | { string }),
     exists: (path: string) -> (boolean),
     writeFile: (path: string, contents: string) -> (),
-    writeDir: (path: string) -> ()
+    writeDir: (path: string) -> (),
+    writeDirAll: (path: string) -> ()
 }
 
 local fs = {}
@@ -20,6 +21,10 @@ function fs.writeFile(path: string, contents: string): ()
 end
 
 function fs.writeDir(path: string): ()
+    return
+end
+
+function fs.writeDirAll(path: string): ()
     return
 end
 
