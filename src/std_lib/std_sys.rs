@@ -1,8 +1,6 @@
-use std::os::unix::ffi::OsStrExt;
-
 use mlua::prelude::*;
 
-use gethostname::gethostname;
+use sysinfo::{System};
 
 pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     let table = luau.create_table()?;
@@ -13,7 +11,7 @@ pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
 }
 
 fn sys_host_name(luau: &Lua, (): ()) -> LuaResult<LuaString> {
-    let host_name = gethostname();
-    
+    let host_name = System::host_name().unwrap();
+
     Ok(luau.create_string(host_name.as_bytes())?)
 }
