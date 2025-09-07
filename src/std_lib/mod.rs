@@ -2,6 +2,7 @@ pub mod std_fs;
 pub mod std_io;
 pub mod std_globals;
 pub mod std_sys;
+pub mod std_fmt;
 
 use mlua::prelude::*;
 

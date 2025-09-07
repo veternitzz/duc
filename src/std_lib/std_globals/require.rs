@@ -20,6 +20,7 @@ fn get_std_library(luau: &Lua, path: String) -> LuaResult<LuaTable> {
         "@std/fs" => Ok(std_fs::create(&luau)?),
         "@std/io" => Ok(std_io::create(&luau)?),
         "@std/sys" => Ok(std_sys::create(&luau)?),
+        "@std/fmt" => Ok(std_fmt::create(&luau)?),
         &_ => Err(LuaError::RuntimeError(String::from("invalid standard library")))
     }
 }
