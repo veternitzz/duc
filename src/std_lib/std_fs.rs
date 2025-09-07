@@ -1,4 +1,5 @@
 use std::fs;
+
 use mlua::prelude::*;
 
 pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
@@ -8,6 +9,10 @@ pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     table.set("writeDir", luau.create_function(fs_write_dir)?)?;
     table.set("exists", luau.create_function(fs_exists)?)?;
     table.set("writeDirAll", luau.create_function(fs_write_dir_all)?)?;
+    table.set("removeFile", luau.create_function(fs_remove_file)?)?;
+    table.set("removeDir", luau.create_function(fs_remove_dir)?)?;
+    table.set("removeDirAll", luau.create_function(fs_remove_dir_all)?)?;
+
     table.set_readonly(true);
 
     Ok(table)
@@ -56,5 +61,20 @@ fn fs_exists(_: &Lua, path: String) -> LuaResult<bool> {
 
 fn fs_write_dir_all(_: &Lua, path: String) -> LuaResult<()> {
     fs::create_dir_all(path)?;
+    Ok(())
+}
+
+fn fs_remove_file(_: &Lua, path: String) -> LuaResult<()> {
+    fs::remove_file(path)?;
+    Ok(())
+}
+
+fn fs_remove_dir(_: &Lua, path: String) -> LuaResult<()> {
+    fs::remove_dir(path)?;
+    Ok(())
+}
+
+fn fs_remove_dir_all(_: &Lua, path: String) -> LuaResult<()> {
+    fs::remove_dir_all(path)?;
     Ok(())
 }
