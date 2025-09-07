@@ -1,7 +1,8 @@
 export type sys = {
     hostname: () -> string,
     name: () -> string,
-    memory: () -> MemoryInfo
+    memory: () -> MemoryInfo,
+    uptime: () -> number
 }
 
 local sys = {}
@@ -21,6 +22,10 @@ export type MemoryInfo = {
 
 function sys.memory(): MemoryInfo
     return {} :: MemoryInfo
+end
+
+function sys.uptime(): number
+    return 0
 end
 
 return sys :: sys

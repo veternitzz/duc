@@ -7,6 +7,7 @@ pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     table.set("hostname", luau.create_function(sys_host_name)?)?;
     table.set("name", luau.create_function(sys_name)?)?;
     table.set("memory", luau.create_function(sys_memory)?)?;
+    table.set("uptime", luau.create_function(sys_uptime)?)?;
     table.set_readonly(true);
 
     Ok(table)
@@ -33,4 +34,8 @@ fn sys_memory(luau: &Lua, (): ()) -> LuaResult<LuaTable> {
     mem_info.set_readonly(true);
 
     Ok(mem_info)
+}
+
+fn sys_uptime(_: &Lua, (): ()) -> LuaResult<f64> {
+    Ok(System::uptime() as f64)
 }
