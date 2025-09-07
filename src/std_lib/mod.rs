@@ -11,6 +11,7 @@ pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     table.set("fs", std_fs::create(&luau)?)?;
     table.set("io", std_io::create(&luau)?)?;
     table.set("sys", std_sys::create(&luau)?)?;
+    table.set("fmt", std_fmt::create(&luau)?)?;
 
     Ok(table)
 }
