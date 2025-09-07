@@ -3,7 +3,10 @@ export type Fs = {
     exists: (path: string) -> (boolean),
     writeFile: (path: string, contents: string) -> (),
     writeDir: (path: string) -> (),
-    writeDirAll: (path: string) -> ()
+    writeDirAll: (path: string) -> (),
+    removeFile: (path: string) -> (),
+    removeDir: (path: string) -> (),
+    removeDirAll: (path: string) -> ()
 }
 
 local fs = {}
@@ -25,6 +28,18 @@ function fs.writeDir(path: string): ()
 end
 
 function fs.writeDirAll(path: string): ()
+    return
+end
+
+function fs.removeFile(path: string): ()
+    return
+end
+
+function fs.removeDir(path: string): ()
+    return
+end
+
+function fs.removeDirAll(path: string): ()
     return
 end
 
