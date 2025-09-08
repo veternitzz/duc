@@ -28,6 +28,10 @@ impl Runtime {
         Ok(())
     }
 
+    pub fn open_types(&self) -> LuaResult<()> {
+        Ok(())
+    }
+
     pub fn load_string(&self, chunk: String) -> LuaResult<()> {
         let luau = &self.luau_state;
 
