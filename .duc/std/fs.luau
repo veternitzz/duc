@@ -6,7 +6,7 @@ export type Fs = {
     writeDirAll: (path: string) -> (),
     removeFile: (path: string) -> (),
     removeDir: (path: string) -> (),
-    removeDirAll: (path: string) -> ()
+    removeDirAll: (path: string) -> (),
 }
 
 local fs = {}
