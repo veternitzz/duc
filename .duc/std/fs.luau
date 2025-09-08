@@ -7,6 +7,7 @@ export type Fs = {
     removeFile: (path: string) -> (),
     removeDir: (path: string) -> (),
     removeDirAll: (path: string) -> (),
+    metadata: (path: string) -> FileMetadata
 }
 
 local fs = {}
@@ -41,6 +42,16 @@ end
 
 function fs.removeDirAll(path: string): ()
     return
+end
+
+export type FileMetadata = {
+    size: (self: FileMetadata) -> number
+}
+
+function fs.metadata(path: string): FileMetadata
+    local fm: FileMetadata = nil
+    
+    return fm :: FileMetadata
 end
 
 return fs :: Fs
