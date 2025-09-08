@@ -1,13 +1,13 @@
 export type sys = {
-    hostname: () -> string,
+    hostName: () -> string,
     name: () -> string,
     memory: () -> MemoryInfo,
-    uptime: () -> number
+    upTime: () -> number
 }
 
 local sys = {}
 
-function sys.hostname(): string
+function sys.hostName(): string
     return ""
 end
 
@@ -24,7 +24,7 @@ function sys.memory(): MemoryInfo
     return {} :: MemoryInfo
 end
 
-function sys.uptime(): number
+function sys.upTime(): number
     return 0
 end
 

@@ -4,10 +4,10 @@ use sysinfo::{System};
 
 pub fn create(luau: &Lua) -> LuaResult<LuaTable> {
     let table = luau.create_table()?;
-    table.set("hostname", luau.create_function(sys_host_name)?)?;
+    table.set("hostName", luau.create_function(sys_host_name)?)?;
     table.set("name", luau.create_function(sys_name)?)?;
     table.set("memory", luau.create_function(sys_memory)?)?;
-    table.set("uptime", luau.create_function(sys_uptime)?)?;
+    table.set("upTime", luau.create_function(sys_uptime)?)?;
     table.set_readonly(true);
 
     Ok(table)
