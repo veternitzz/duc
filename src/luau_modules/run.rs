@@ -9,7 +9,6 @@ pub fn run() -> LuaResult<()> {
 
     let pre_exec_duc = Runtime::new();
     pre_exec_duc.open_globals()?;
-    pre_exec_duc.open_types()?;
 
     if module_type == ModuleKind::COMPLEX && fs::exists("./src/run/init.luau")? {
         pre_exec_duc.load_file(String::from("./src/run/init.luau"))?;

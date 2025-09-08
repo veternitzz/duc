@@ -16,7 +16,6 @@ fn main() -> LuaResult<()> {
 
     let duc = runtime::Runtime::new();
     duc.open_globals()?;
-    duc.open_types()?;
     duc.load_string(arg_return)?;
 
     Ok(())
