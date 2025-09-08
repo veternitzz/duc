@@ -14,7 +14,6 @@ pub struct Runtime {
 impl Runtime {
     pub fn new() -> Runtime {
         let luau = Lua::new_with(LuaStdLib::ALL, LuaOptions::new()).unwrap();
-        std_globals::inject(&luau).unwrap();
 
         Runtime {
             luau_state: luau
